@@ -83,6 +83,7 @@ Now let's look at the Javascript object called `MetaCoin` provided for us by Tru
 ```javascript
 // Print the deployed version of MetaCoin.
 // Note that getting the deployed version requires a promise, hence the .then.
+const MetaCoin = artifacts.require("MetaCoin");
 MetaCoin.deployed().then(function(instance) {
   console.log(instance);
 });
@@ -111,6 +112,8 @@ There are three functions on the MetaCoin contract that we can execute. If you a
 When calling `sendCoin`, we'll execute it as a transaction. In the following example, we'll send 10 Meta coin from one account to another, in a way that persists changes on the network:
 
 ```javascript
+const MetaCoin = artifacts.require("MetaCoin");
+
 var account_one = "0x1234..."; // an address
 var account_two = "0xabcd..."; // another address
 
@@ -138,6 +141,8 @@ There are a few things interesting about the above code:
 Continuing with MetaCoin, notice the `getBalance` function is a great candidate for reading data from the network. It doesn't need to make any changes, as it just returns the MetaCoin balance of the address passed to it. Let's give it a shot:
 
 ```javascript
+const MetaCoin = artifacts.require("MetaCoin");
+
 var account_one = "0x1234..."; // an address
 
 var meta;
@@ -166,6 +171,8 @@ What's interesting here:
 Your contracts can fire events that you can catch to gain more insight into what your contracts are doing. The easiest way to handle events is by processing the result object of the transaction that triggered the event, like so:
 
 ```javascript
+const MetaCoin = artifacts.require("MetaCoin");
+
 var account_one = "0x1234..."; // an address
 var account_two = "0xabcd..."; // another address
 
@@ -209,6 +216,8 @@ For more information, please see the [README](https://github.com/trufflesuite/tr
 In all of the above cases, we've been using a contract abstraction that has already been deployed. We can deploy our own version to the network using the `.new()` function:
 
 ```javascript
+const MetaCoin = artifacts.require("MetaCoin");
+
 MetaCoin.new().then(function(instance) {
   // Print the new address
   console.log(instance.address);
@@ -222,6 +231,8 @@ MetaCoin.new().then(function(instance) {
 If you already have an address for a contract, you can create a new abstraction to represent the contract at that address.
 
 ```javascript
+const MetaCoin = artifacts.require("MetaCoin");
+
 var instance = MetaCoin.at("0x1234...");
 ```
 
